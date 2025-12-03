@@ -19,7 +19,7 @@ html, body, #root {
   padding: 0;
   height: 100%;
   width: 100%;
-  overflow: hidden;     /* 🚀 NO SCROLLBARS */
+  overflow: hidden;
   background: linear-gradient(180deg, var(--bg-2), var(--bg-1));
   color: var(--white);
   font-family: 'Inter', sans-serif;
@@ -27,14 +27,15 @@ html, body, #root {
 
 /* App shell — fullscreen always */
 .app-shell {
-  height: 100vh;        /* 🚀 Exact window height */
+  height: 100vh;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 320px;
   gap: 18px;
   padding: 18px;
-  overflow: hidden;     /* 🚀 Prevent extra scroll */
+  overflow: hidden;
 }
+
 @media(max-width: 960px) {
   .app-shell {
     grid-template-columns: 1fr;
@@ -52,16 +53,23 @@ html, body, #root {
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow: hidden;      /* 🚀 no overflow inside */
+  overflow: hidden;
 }
 
-/* Top bar */
+/* 🔥 MOBILE FIX — give space for bottom controller */
+@media(max-width: 600px) {
+  .canvas-card {
+    padding-bottom: 150px; /* Space for controller */
+  }
+}
+
 .canvas-topbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 8px;    /* smaller header → better fit */
+  margin-bottom: 8px;
 }
+
 .logo {
   width: 46px;
   height: 46px;
@@ -78,7 +86,6 @@ html, body, #root {
   gap: 10px;
 }
 
-/* Buttons */
 .btn {
   padding: 8px 12px;
   cursor: pointer;
@@ -89,35 +96,37 @@ html, body, #root {
   background: rgba(255,255,255,0.05);
   transition: 0.1s;
 }
+
 .btn:hover {
   opacity: 0.85;
 }
+
 .btn.primary {
   background: linear-gradient(90deg, var(--accent1), var(--accent2));
   border: none;
 }
+
 .btn.neon {
   border: 1px solid rgba(124,58,237,0.4);
   box-shadow: 0 0 12px rgba(124,58,237,0.3);
 }
-.title{
+
+.title {
   padding-top: 30px;
 }
 
-
-/* Canvas mount — must shrink properly */
 .mount {
   flex: 1;
-  min-height: 0;        /* 🚀 CRITICAL for perfect fit */
+  min-height: 0;
   border-radius: 12px;
   overflow: hidden;
 }
+
 .mount > canvas {
   width: 100% !important;
   height: 100% !important;
 }
 
-/* Mini map */
 .minimap {
   position: absolute;
   right: 16px;
@@ -130,6 +139,12 @@ html, body, #root {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media(max-width: 600px) {
+  .minimap {
+    display: none;
+  }
 }
 
 /* HUD panel */
@@ -157,12 +172,12 @@ html, body, #root {
   border-radius: 14px;
   padding: 16px;
 
-  height: calc(100vh - 36px);  /* 🚀 fits window exactly */
-  overflow-y: auto;            /* only sidebar scrolls */
+  height: calc(100vh - 36px);
+  overflow-y: auto;
   overflow-x: hidden;
 }
 
-/* Overlay full screen */
+/* Overlay */
 .overlay-screen {
   position: fixed;
   inset: 0;
@@ -171,6 +186,7 @@ html, body, #root {
   justify-content: center;
   align-items: center;
 }
+
 .overlay-card {
   background: var(--panel);
   border: 1px solid var(--glass-border);
@@ -179,7 +195,6 @@ html, body, #root {
   text-align: center;
 }
 
-/* Start modal */
 .start-modal {
   position: absolute;
   inset: 0;
@@ -187,6 +202,7 @@ html, body, #root {
   justify-content: center;
   align-items: center;
 }
+
 .start-card {
   background: var(--panel);
   border: 1px solid var(--glass-border);
@@ -196,19 +212,14 @@ html, body, #root {
   max-width: 92%;
   box-shadow: 0 20px 60px rgba(0,0,0,0.6);
 }
+
 .start-actions {
   display: flex;
   gap: 10px;
   margin-top: 12px;
 }
-.stat{
+
+.stat {
   display: flex;
   justify-content: space-between;
-}
-
-/* Extra responsive fix */
-@media(max-width: 600px) {
-  .minimap {
-    display: none;
-  }
 }
