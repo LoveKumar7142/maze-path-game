@@ -59,6 +59,7 @@ html, body, #root {
   overflow: hidden;
 }
 
+/* TOP BAR */
 .canvas-topbar {
   display: flex;
   justify-content: space-between;
@@ -66,7 +67,7 @@ html, body, #root {
   margin-bottom: 8px;
 }
 
-/* Logo */
+/* LOGO */
 .logo {
   width: 46px;
   height: 46px;
@@ -78,7 +79,7 @@ html, body, #root {
   font-weight: 800;
 }
 
-/* Buttons */
+/* BUTTONS */
 .btn {
   padding: 8px 12px;
   border-radius: 10px;
@@ -93,7 +94,7 @@ html, body, #root {
   border: none;
 }
 
-/* CANVAS */
+/* CANVAS MOUNT */
 .mount {
   flex: 1;
   min-height: 0;
@@ -105,7 +106,7 @@ html, body, #root {
   height: 100% !important;
 }
 
-/* Minimap */
+/* MINIMAP */
 .minimap {
   position: absolute;
   right: 16px;
@@ -120,7 +121,7 @@ html, body, #root {
   justify-content: center;
 }
 
-/* HUD Panel */
+/* HUD PANEL */
 .hud-panel {
   position: absolute;
   top: 12px;
@@ -136,10 +137,12 @@ html, body, #root {
   align-items: center;
 }
 
-/* MOBILE LAYOUT FIXES */
+/* ================================
+      MOBILE FIX SECTION
+================================ */
 @media(max-width: 600px) {
 
-  /* Allow page to scroll on mobile */
+  /* Allow mobile scroll */
   html, body, #root {
     overflow: auto !important;
     height: auto;
@@ -152,19 +155,20 @@ html, body, #root {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    overflow: visible;
+    overflow: visible !important;
   }
 
-  /* Canvas card fits mobile */
+  /* Canvas card adjusts height */
   .canvas-card {
-    height: auto;
-    padding-bottom: 150px; /* space for floating controller */
+    height: auto !important;
+    padding-bottom: 150px; /* Floating controller space */
   }
 
-  /* Canvas gets mobile-friendly height */
+  /* ⭐ FINAL CANVAS FIX ⭐ */
   .mount {
-    height: 380px !important;
-    min-height: 380px;
+    height: 340px !important;
+    min-height: 340px !important;
+    flex: none !important;   /* 🔥 REAL FIX for your issue */
   }
 
   /* Sidebar full width */
@@ -175,18 +179,18 @@ html, body, #root {
     margin-top: 12px;
   }
 
-  /* Hide minimap on mobile */
+  /* Hide minimap */
   .minimap {
     display: none;
   }
 
-  /* HUD center aligned */
+  /* HUD width fixed */
   .hud-panel {
     left: 10px;
     right: 10px;
   }
 
-  /* Mobile safe padding for floating controller */
+  /* Safe padding for floating controller */
   body {
     padding-bottom: 160px;
   }
