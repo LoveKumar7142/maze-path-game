@@ -1,0 +1,59 @@
+/* Controller styles */
+.controller-wrap {
+  background: rgba(255,255,255,0.04);
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 38px;
+  margin-top: 10px;
+}
+
+.touch-control {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.tc-row {
+  display: flex;
+  gap: 12px;
+}
+
+.tc-btn {
+  width: 56px;
+  height: 56px;
+  color: white;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: 700;
+}
+.tc-btn:active {
+  transform: scale(0.94);
+}
+
+/* Mobile floating joystick */
+.joystick {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  width: 160px;
+  height: 160px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.05);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+}
+@media(max-width: 600px) {
+  .joystick {
+    display: flex;
+  }
+}
