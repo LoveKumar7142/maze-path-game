@@ -8,12 +8,11 @@
   --glass-border: rgba(255, 255, 255, 0.07);
   --muted: rgba(255,255,255,0.7);
   --white: #ffffff;
-
   --accent1: #7c3aed;
   --accent2: #4f46e5;
 }
 
-/* GLOBAL RESET — fullscreen, no scrollbars */
+/* GLOBAL (Desktop) */
 html, body, #root {
   margin: 0;
   padding: 0;
@@ -21,11 +20,11 @@ html, body, #root {
   width: 100%;
   overflow: hidden;
   background: linear-gradient(180deg, var(--bg-2), var(--bg-1));
-  color: var(--white);
   font-family: 'Inter', sans-serif;
+  color: var(--white);
 }
 
-/* App shell — fullscreen always */
+/* DESKTOP LAYOUT */
 .app-shell {
   height: 100vh;
   width: 100%;
@@ -36,40 +35,38 @@ html, body, #root {
   overflow: hidden;
 }
 
-@media(max-width: 960px) {
-  .app-shell {
-    grid-template-columns: 1fr;
-  }
+/* SIDEBAR */
+.sidebar {
+  background: var(--panel);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 16px;
+  height: calc(100vh - 36px);
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
-/* Canvas card */
+/* CANVAS CARD */
 .canvas-card {
   background: var(--panel);
   border: 1px solid var(--glass-border);
   border-radius: 16px;
-  box-shadow: 0 14px 40px rgba(0,0,0,0.5);
-  height: 100%;
   padding: 14px;
   display: flex;
   flex-direction: column;
   position: relative;
+  height: 100%;
   overflow: hidden;
-}
-
-/* 🔥 MOBILE FIX — give space for bottom controller */
-@media(max-width: 600px) {
-  .canvas-card {
-    padding-bottom: 150px; /* Space for controller */
-  }
 }
 
 .canvas-topbar {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 8px;
 }
 
+/* Logo */
 .logo {
   width: 46px;
   height: 46px;
@@ -81,52 +78,34 @@ html, body, #root {
   font-weight: 800;
 }
 
-.top-actions {
-  display: flex;
-  gap: 10px;
-}
-
+/* Buttons */
 .btn {
   padding: 8px 12px;
-  cursor: pointer;
   border-radius: 10px;
-  color: var(--white);
-  font-weight: 600;
   border: 1px solid var(--glass-border);
-  background: rgba(255,255,255,0.05);
-  transition: 0.1s;
+  background: rgba(255,255,255,0.06);
+  font-weight: 600;
+  color: var(--white);
+  cursor: pointer;
 }
-
-.btn:hover {
-  opacity: 0.85;
-}
-
 .btn.primary {
   background: linear-gradient(90deg, var(--accent1), var(--accent2));
   border: none;
 }
 
-.btn.neon {
-  border: 1px solid rgba(124,58,237,0.4);
-  box-shadow: 0 0 12px rgba(124,58,237,0.3);
-}
-
-.title {
-  padding-top: 30px;
-}
-
+/* CANVAS */
 .mount {
   flex: 1;
   min-height: 0;
   border-radius: 12px;
   overflow: hidden;
 }
-
 .mount > canvas {
   width: 100% !important;
   height: 100% !important;
 }
 
+/* Minimap */
 .minimap {
   position: absolute;
   right: 16px;
@@ -141,13 +120,7 @@ html, body, #root {
   justify-content: center;
 }
 
-@media(max-width: 600px) {
-  .minimap {
-    display: none;
-  }
-}
-
-/* HUD panel */
+/* HUD Panel */
 .hud-panel {
   position: absolute;
   top: 12px;
@@ -161,23 +134,65 @@ html, body, #root {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  pointer-events: auto;
 }
 
-/* Sidebar */
-.sidebar {
-  max-width: 81%;
-  background: var(--panel);
-  border: 1px solid var(--glass-border);
-  border-radius: 14px;
-  padding: 16px;
+/* MOBILE LAYOUT FIXES */
+@media(max-width: 600px) {
 
-  height: calc(100vh - 36px);
-  overflow-y: auto;
-  overflow-x: hidden;
+  /* Allow page to scroll on mobile */
+  html, body, #root {
+    overflow: auto !important;
+    height: auto;
+  }
+
+  /* App shell becomes vertical */
+  .app-shell {
+    height: auto;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow: visible;
+  }
+
+  /* Canvas card fits mobile */
+  .canvas-card {
+    height: auto;
+    padding-bottom: 150px; /* space for floating controller */
+  }
+
+  /* Canvas gets mobile-friendly height */
+  .mount {
+    height: 380px !important;
+    min-height: 380px;
+  }
+
+  /* Sidebar full width */
+  .sidebar {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto;
+    margin-top: 12px;
+  }
+
+  /* Hide minimap on mobile */
+  .minimap {
+    display: none;
+  }
+
+  /* HUD center aligned */
+  .hud-panel {
+    left: 10px;
+    right: 10px;
+  }
+
+  /* Mobile safe padding for floating controller */
+  body {
+    padding-bottom: 160px;
+  }
 }
 
-/* Overlay */
+/* OVERLAYS */
 .overlay-screen {
   position: fixed;
   inset: 0;
@@ -195,6 +210,7 @@ html, body, #root {
   text-align: center;
 }
 
+/* START MODAL */
 .start-modal {
   position: absolute;
   inset: 0;
@@ -217,9 +233,4 @@ html, body, #root {
   display: flex;
   gap: 10px;
   margin-top: 12px;
-}
-
-.stat {
-  display: flex;
-  justify-content: space-between;
 }
